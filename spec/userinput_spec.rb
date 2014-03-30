@@ -54,6 +54,14 @@ describe UserInput do
           expect(prompt.ask).to eql 'correct'
         end
       end
+      context 'when provided an unsupported validation method' do
+        it 'raises a RuntimeError' do
+          prompt = UserInput::Prompt.new(validation: 28)
+          allow(STDIN).to receive(:gets).and_return("_str\n")
+          expect(prompt).to receive(:print).with('? ')
+          expect { prompt.ask }.to raise_error RuntimeError
+        end
+      end
 
       it 'raises an error if max attempts is reached' do
         prompt = UserInput::Prompt.new(attempts: 2) { |x| false }
@@ -61,6 +69,13 @@ describe UserInput do
         expect(prompt).to receive(:print).with('? ').twice
         expect { prompt.ask }.to raise_error ArgumentError
       end
+    end
+
+    it 'disables echo for secret input' do
+      prompt = UserInput::Prompt.new(secret: true)
+      allow(STDIN).to receive(:gets).and_return("_str\n")
+      expect(prompt).to receive(:print).with('? ')
+      expect(prompt.ask).to eql '_str'
     end
   end
 end
