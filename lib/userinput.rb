@@ -60,6 +60,7 @@ module UserInput
     def _ask
       input = STDIN.gets.chomp
       input = @default if input.empty? && !@default.nil?
+      puts if @secret
       input
     end
 
