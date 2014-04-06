@@ -59,7 +59,7 @@ module UserInput
     # Parse user input
     def _ask
       input = STDIN.gets.chomp
-      input = @default if input.empty? && !@default.nil?
+      input = @default if input.empty? && @default
       puts if @secret
       input
     end
