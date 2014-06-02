@@ -64,7 +64,7 @@ describe UserInput do
       end
 
       it 'raises an error if max attempts is reached' do
-        prompt = UserInput::Prompt.new(attempts: 2) { |x| false }
+        prompt = UserInput::Prompt.new(attempts: 2) { false }
         allow(STDIN).to receive(:gets).and_return("_str\n", "_foo\n")
         expect(prompt).to receive(:print).with('? ').twice
         expect { prompt.ask }.to raise_error ArgumentError
