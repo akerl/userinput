@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'userinput'
-  s.version     = '0.0.3'
+  s.version     = '1.0.0'
   s.date        = Time.now.strftime("%Y-%m-%d")
 
   s.summary     = 'Simple user input library'
