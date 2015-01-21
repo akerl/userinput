@@ -38,6 +38,8 @@ module UserInput
       enable_echo if @secret
     end
 
+    private
+
     ##
     # Validate user input
     def valid(input)
@@ -52,8 +54,6 @@ module UserInput
         fail "Supported validation type not provided #{@validation.class}"
       end
     end
-
-    private
 
     ##
     # Parse user input
