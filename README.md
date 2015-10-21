@@ -3,8 +3,9 @@ userinput
 
 [![Gem Version](https://img.shields.io/gem/v/userinput.svg)](https://rubygems.org/gems/userinput)
 [![Dependency Status](https://img.shields.io/gemnasium/akerl/userinput.svg)](https://gemnasium.com/akerl/userinput)
+[![Build Status](https://img.shields.io/circleci/project/akerl/userinput.svg)](https://circleci.com/gh/akerl/userinput)
 [![Coverage Status](https://img.shields.io/codecov/c/github/akerl/userinput.svg)](https://codecov.io/github/akerl/userinput)
-[![Build Status](https://img.shields.io/travis/akerl/userinput.svg)](https://travis-ci.org/akerl/userinput)
+[![Code Quality](https://img.shields.io/codacy/fbda4046154e4ac38a47f2c6627d57c8.svg)](https://www.codacy.com/app/akerl/userinput)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
 
 A simple user input library
