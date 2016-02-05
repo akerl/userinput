@@ -51,7 +51,7 @@ module UserInput
       when NilClass
         return true
       else
-        fail "Supported validation type not provided #{@validation.class}"
+        raise "Supported validation type not provided #{@validation.class}"
       end
     end
 
@@ -69,7 +69,7 @@ module UserInput
     def check_counter
       return if @attempts.nil?
       @attempts -= 1
-      fail ArgumentError, 'No valid input provided' if @attempts == 0
+      raise ArgumentError, 'No valid input provided' if @attempts == 0
     end
 
     ##
