@@ -85,6 +85,18 @@ Password?
 => "_password"
 ```
 
+Setting the file descriptor lets you control where output is sent (for instance, use this to print messages on STDERR or to a custom IO object):
+
+```
+> require 'userinput'
+=> true
+> prompt = UserInput.new(message: 'Password', secret: true, fd: STDERR)
+=> #<UserInput::Prompt:0x007f888110a138 @attempts=nil, @message="Password", @default=nil, @secret=true, @fd=#<IO:<STDERR>>, @validation=nil>
+> prompt.ask
+Password?
+=> "_password"
+```
+
 ## Installation
 
     gem install userinput
