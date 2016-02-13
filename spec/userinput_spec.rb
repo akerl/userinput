@@ -25,13 +25,13 @@ describe UserInput do
     describe '#ask' do
       it 'prompts for user input' do
         allow(STDIN).to receive(:gets) { "_answer\n" }
-        expect(subject).to receive(:print).with('_msg? [_default] ')
+        expect(STDOUT).to receive(:print).with('_msg? [_default] ')
         expect(subject.ask).to eql '_answer'
       end
 
       it 'returns the default if available' do
         allow(STDIN).to receive(:gets) { "\n" }
-        expect(subject).to receive(:print).with('_msg? [_default] ')
+        expect(STDOUT).to receive(:print).with('_msg? [_default] ')
         expect(subject.ask).to eql '_default'
       end
 
@@ -42,7 +42,7 @@ describe UserInput do
             validation: /[0-9]+/
           )
           allow(STDIN).to receive(:gets).and_return("_str\n", "29\n")
-          expect(prompt).to receive(:print).with('_msg? ').twice
+          expect(STDOUT).to receive(:print).with('_msg? ').twice
           expect(prompt.ask).to eql '29'
         end
       end
@@ -50,7 +50,7 @@ describe UserInput do
         it 'validates input' do
           prompt = UserInput::Prompt.new { |x| x == 'correct' }
           allow(STDIN).to receive(:gets).and_return("_str\n", "correct\n")
-          expect(prompt).to receive(:print).with('? ').twice
+          expect(STDOUT).to receive(:print).with('? ').twice
           expect(prompt.ask).to eql 'correct'
         end
       end
@@ -58,7 +58,7 @@ describe UserInput do
         it 'raises a RuntimeError' do
           prompt = UserInput::Prompt.new(validation: 28)
           allow(STDIN).to receive(:gets).and_return("_str\n")
-          expect(prompt).to receive(:print).with('? ')
+          expect(STDOUT).to receive(:print).with('? ')
           expect { prompt.ask }.to raise_error RuntimeError
         end
       end
@@ -66,7 +66,7 @@ describe UserInput do
       it 'raises an error if max attempts is reached' do
         prompt = UserInput::Prompt.new(attempts: 2) { false }
         allow(STDIN).to receive(:gets).and_return("_str\n", "_foo\n")
-        expect(prompt).to receive(:print).with('? ').twice
+        expect(STDOUT).to receive(:print).with('? ').twice
         expect { prompt.ask }.to raise_error ArgumentError
       end
     end
@@ -74,7 +74,15 @@ describe UserInput do
     it 'disables echo for secret input' do
       prompt = UserInput::Prompt.new(secret: true)
       allow(STDIN).to receive(:gets).and_return("_str\n")
-      expect(prompt).to receive(:print).with('? ')
+      expect(STDOUT).to receive(:print).with('? ')
+      expect(prompt.ask).to eql '_str'
+    end
+
+    it 'accepts an alternate file descriptor for output' do
+      target = StringIO.new
+      prompt = UserInput::Prompt.new(fd: target)
+      allow(STDIN).to receive(:gets).and_return("_str\n")
+      expect(target).to receive(:print).with('? ')
       expect(prompt.ask).to eql '_str'
     end
   end

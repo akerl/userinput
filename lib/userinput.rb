@@ -20,13 +20,14 @@ module UserInput
       @message = params[:message] || ''
       @default = params[:default]
       @secret = params[:secret] || false
+      @fd = params[:fd] || STDOUT
       @validation = block || params[:validation]
     end
 
     ##
     # Request user input
     def ask
-      print "#{@message}? #{@default.nil? ? '' : "[#{@default}] "}"
+      @fd.print "#{@message}? #{@default.nil? ? '' : "[#{@default}] "}"
       disable_echo if @secret
 
       input = _ask
@@ -60,7 +61,7 @@ module UserInput
     def _ask
       input = STDIN.gets.chomp
       input = @default if input.empty? && @default
-      puts if @secret
+      @fd.puts if @secret
       input
     end
 
