@@ -54,6 +54,17 @@ describe UserInput do
           expect(prompt.ask).to eql 'correct'
         end
       end
+      context 'when provided an Enumerable' do
+        it 'validates input' do
+          prompt = UserInput::Prompt.new(
+            message: '_msg',
+            validation: %w(a b c)
+          )
+          allow(STDIN).to receive(:gets).and_return("_str\n", "a\n")
+          expect(STDOUT).to receive(:print).with('_msg? ').twice
+          expect(prompt.ask).to eql 'a'
+        end
+      end
       context 'when provided an unsupported validation method' do
         it 'raises a RuntimeError' do
           prompt = UserInput::Prompt.new(validation: 28)

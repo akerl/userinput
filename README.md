@@ -39,7 +39,7 @@ You can optionally provide a default:
 => "_other"
 ```
 
-If you provide a validation Regexp or a code block, the input will be validated using that:
+If you provide a validation Regexp, Enumerable, or a code block, the input will be validated using that:
 
 ```
 > require 'userinput'

@@ -1,6 +1,13 @@
 ##
 # User input library
 module UserInput
+  # Hash of validation strategies
+  VALIDATIONS = {
+    Proc => :call,
+    Regexp => :match,
+    Enumerable => :include?
+  }.freeze
+
   class << self
     ##
     # Insert a helper .new() method for creating a new Prompt object
@@ -44,16 +51,10 @@ module UserInput
     ##
     # Validate user input
     def valid(input)
-      case @validation
-      when Proc
-        return @validation.call input
-      when Regexp
-        return @validation.match input
-      when NilClass
-        return true
-      else
-        raise "Supported validation type not provided #{@validation.class}"
-      end
+      return true unless @validation
+      _, method = VALIDATIONS.find { |klass, _| @validation.is_a? klass }
+      return @validation.send(method, input) if method
+      raise "Supported validation type not provided #{@validation.class}"
     end
 
     ##
