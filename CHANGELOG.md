@@ -1,3 +1,8 @@
+# 1.0.3 / 2016-04-10
+
+* [ENHANCEMENT] Clean up module layout
+* [FEATURE] Add Boolean helper for yes/no questions
+
 # 1.0.2 / 2016-04-08
 
 * [FEATURE] Add support for Enumerables in :validation parameter

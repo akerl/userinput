@@ -97,6 +97,19 @@ Password?
 => "_password"
 ```
 
+### Boolean helper
+
+UserInput::Boolean is a subclass of Prompt that is designed for asking yes/no questions.
+
+It valiates that answers match /(y|yes|n|no)/i, and returns the response as a boolean true/false rather than a string.
+
+To use it:
+
+```
+a = UserInput::Boolean.new(message: 'Do you like cats')
+response = a.ask
+```
+
 ## Installation
 
     gem install userinput
