@@ -64,7 +64,7 @@ module UserInput
     def check_counter
       return if @attempts.nil?
       @attempts -= 1
-      raise ArgumentError, 'No valid input provided' if @attempts == 0
+      raise ArgumentError, 'No valid input provided' if @attempts.zero?
     end
 
     ##
