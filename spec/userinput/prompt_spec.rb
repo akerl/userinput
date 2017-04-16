@@ -52,7 +52,7 @@ describe UserInput do
         it 'validates input' do
           prompt = UserInput::Prompt.new(
             message: '_msg',
-            validation: %w(a b c)
+            validation: %w[a b c]
           )
           allow(STDIN).to receive(:gets).and_return("_str\n", "a\n")
           expect(STDOUT).to receive(:print).with('_msg? ').twice
