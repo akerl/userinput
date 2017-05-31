@@ -1,5 +1,5 @@
 module UserInput
-  MESSAGE_TEMPLATE = '%{message}%{separator} %{default}'.freeze
+  MESSAGE_TEMPLATE = '%<message>s%<separator>s %<default>s'.freeze
 
   ##
   # Prompt object
