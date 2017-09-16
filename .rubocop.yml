@@ -1,7 +1,2 @@
-Encoding:
-    Enabled: false
-Metrics/BlockLength:
-    Exclude:
-    - spec/**/*
-Style/FormatString:
-    EnforcedStyle: percent
+inherit_gem:
+  goodcop: .rubocop.yml
