@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'userinput'
   s.version     = '1.0.2'
-  s.date        = Time.now.strftime("%Y-%m-%d")
+  s.date        = Time.now.strftime('%Y-%m-%d')
 
   s.summary     = 'Simple user input library'
   s.description = 'Provides a prompt object for requesting user input'

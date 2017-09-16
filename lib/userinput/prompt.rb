@@ -34,11 +34,12 @@ module UserInput
     private
 
     def full_message
-      MESSAGE_TEMPLATE % {
+      format(
+        MESSAGE_TEMPLATE,
         message: @message,
         separator: @separator,
         default: @default.nil? ? '' : "[#{@default}] "
-      }
+      )
     end
 
     ##
@@ -84,7 +85,7 @@ module UserInput
     def toggle_echo(state)
       setting = state ? '' : '-'
       `stty #{setting}echo`
-    rescue
+    rescue StandardError
       nil
     end
   end
