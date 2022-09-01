@@ -12,7 +12,7 @@ module UserInput
       @separator = params[:separator] || '?'
       @default = params[:default]
       @secret = params[:secret] || false
-      @fd = params[:fd] || STDOUT
+      @fd = params[:fd] || $stdout
       @validation = block || params[:validation]
     end
 
@@ -54,7 +54,7 @@ module UserInput
     ##
     # Parse user input
     def _ask
-      input = STDIN.gets.chomp
+      input = $stdin.gets.chomp
       input = @default if input.empty? && @default
       @fd.puts if @secret
       input

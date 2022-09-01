@@ -9,7 +9,7 @@ module UserInput
     end
 
     def ask
-      super =~ /y/i ? true : false
+      /y/i.match?(super)
     end
   end
 end
